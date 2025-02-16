@@ -1,6 +1,15 @@
-import { Controller } from "@nestjs/common";
+import { Body, Controller, Post } from "@nestjs/common";
+import { AddressService } from "./address.service";
+import { Address } from "./entities/address.entity";
 
 @Controller("address")  
 export class AddressController {
-    constructor() {}
+    constructor(private addressService: AddressService) {}
+
+    @Post()
+    create(
+        @Body() data: Address
+    ) {
+        return this.addressService.create(data);
+    }
 }

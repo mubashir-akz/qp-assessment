@@ -6,8 +6,10 @@ export class OrderController {
   constructor(private orderService: OrderService) {}
 
   @Post()
-  create(@Body('groceryIds') groceryIds: number[]) {
-    return this.orderService.create(groceryIds);
+  create(
+    @Body() data: { userId: number; items: { groceryId: number; quantity: number }[]; addressId: number }
+  ) {
+    return this.orderService.create(data.items, data.addressId, data.userId);
   }
 
   @Get()

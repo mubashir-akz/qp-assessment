@@ -8,10 +8,10 @@ import { Grocery } from '../grocery/entities/grocery.entity';
 export class OrderService {
   constructor(@InjectRepository(Order) private orderRepo: Repository<Order>) {}
 
-  async create(groceryIds: number[]) {
-    const order = new Order();
-    order.groceries = groceryIds.map(id => ({ id })) as Grocery[];
-    return this.orderRepo.save(order);
+  async create(items: { groceryId: number; quantity: number }[], addressId: number, userId: number) {
+    console.log('items', items);
+    console.log('addressId', addressId);
+    console.log('userId', userId);
   }
 
   findAll() {

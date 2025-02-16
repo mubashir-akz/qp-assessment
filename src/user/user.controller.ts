@@ -3,6 +3,12 @@ import { UserService } from './user.service';
 
 @Controller('users')
 export class UserController {
-  constructor(private orderService: UserService) {}
+  constructor(private userService: UserService) {}
+
+
+  @Post()
+  create(@Body() data: any) {
+    return this.userService.create(data);
+  }
 
 }

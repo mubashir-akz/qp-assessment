@@ -5,14 +5,15 @@ import { Grocery } from './entities/grocery.entity';
 
 @Injectable()
 export class GroceryService {
-  constructor(@InjectRepository(Grocery) private groceryRepo: Repository<Grocery>) {}
+  constructor(@InjectRepository(Grocery) private groceryRepo: Repository<Grocery>
+) {}
 
   create(grocery: Partial<Grocery>) {
     return this.groceryRepo.save(grocery);
   }
 
-  findAll() {
-    return this.groceryRepo.find();
+  async findAll() {
+    return this.groceryRepo.createQueryBuilder('grocery').where('grocery.quantity > 0').getMany();
   }
 
   update(id: number, data: Partial<Grocery>) {

@@ -1,16 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, ManyToMany, JoinTable, ManyToOne, Column } from 'typeorm';
-import { Grocery } from '../../grocery/entities/grocery.entity';
-import { User } from 'src/user/entities/user.entity';
-import { Address } from 'src/address/entities/address.entity';
+import { Entity, PrimaryGeneratedColumn, OneToMany, ManyToOne, Column } from 'typeorm';
+import { OrderItem } from './orderitems.entity';
+import { User } from '../../user/entities/user.entity';
+import { Address } from '../../address/entities/address.entity';
 
 @Entity()
 export class Order {
   @PrimaryGeneratedColumn()
   id: number;
-
-  @ManyToMany(() => Grocery)
-  @JoinTable()
-  groceries: Grocery[];
 
   @ManyToOne(() => User, (user) => user.orders)
   user: User;
@@ -18,10 +14,9 @@ export class Order {
   @ManyToOne(() => Address)
   address: Address;
 
-  @Column()
-  status: string;
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.order, { cascade: true })
+  items: OrderItem[];
 
   @Column()
-  quantity: number;
+  status: string;
 }
- 

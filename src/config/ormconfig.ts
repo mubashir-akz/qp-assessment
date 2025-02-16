@@ -2,6 +2,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Address } from 'src/address/entities/address.entity';
 import { Grocery } from 'src/grocery/entities/grocery.entity';
 import { Order } from 'src/order/entities/order.entity';
+import { OrderItem } from 'src/order/entities/orderitems.entity';
 import { User } from 'src/user/entities/user.entity';
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
@@ -11,6 +12,6 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   username: 'postgres',
   password: '1234',
   database: 'qp-assessment',
-  entities: [User,Order,Grocery,Address],
+  entities: [User,Order,Grocery,Address,OrderItem],
   synchronize: true,
 };

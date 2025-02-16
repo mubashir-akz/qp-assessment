@@ -16,24 +16,18 @@ export class OrderService {
     const groceryIds = items.map(item => item.groceryId);
     const groceries = await this.groceryRepo.findByIds(groceryIds);
 
-    const order = await this.orderRepo.save({
-      address: { id: addressId },
-      user: { id: userId },
-      groceries: groceries.map(grocery => ({
-        ...grocery,
-        quantity: items.find(item => item.groceryId === grocery
-          .id).quantity,
-        
-      })),
-      status: 'confirmed',
-      quantity: items.
-    });
-
-    console.log(order);
+    // const order = new Order();
+    // order.address = { id: addressId } as any;
+    // order.user = { id: userId } as any;
+    // order.status = 'pending';
+    // order.items = items.map(item => {
+    //   const grocery = groceries.find(grocery => grocery.id === item.groceryId);
+    //   return { grocery, quantity: item.quantity } as any;
+    // });
 
   }
 
   findAll() {
     return this.orderRepo.find({ relations: ['groceries'] });
   }
-}
+} 

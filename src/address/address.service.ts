@@ -13,4 +13,8 @@ export class AddressService {
   create(data: Address) {
     return this.addressRepo.save(data);
   }
+
+  findAll() {
+    return this.addressRepo.find();
+  }
 }

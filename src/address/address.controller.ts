@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post } from "@nestjs/common";
 import { AddressService } from "./address.service";
 import { Address } from "./entities/address.entity";
 
@@ -11,5 +11,10 @@ export class AddressController {
         @Body() data: Address
     ) {
         return this.addressService.create(data);
+    }
+
+    @Get()
+    findAll() {
+        return this.addressService.findAll();
     }
 }

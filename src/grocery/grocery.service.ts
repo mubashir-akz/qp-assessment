@@ -27,4 +27,8 @@ export class GroceryService {
   findAllAvailable() {
     return this.groceryRepo.createQueryBuilder('grocery').where('grocery.quantity > 0').getMany();
   }
+
+  updateInventory(id: number, quantity: number) {
+    return this.groceryRepo.update(id, { quantity });
+  }
 }

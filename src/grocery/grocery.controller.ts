@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Put, Delete, Body, Param } from '@nestjs/common';
+import { Controller, Post, Get, Put, Delete, Body, Param, Patch } from '@nestjs/common';
 import { GroceryService } from './grocery.service';
 import { Grocery } from './entities/grocery.entity';
 
@@ -30,4 +30,10 @@ export class GroceryController {
   remove(@Param('id') id: number) {
     return this.groceryService.remove(id);
   }
+
+  @Patch(':id/inventory')
+  updateInventory(@Param('id') id: number, @Body('quantity') quantity: number) {
+    return this.groceryService.updateInventory(id, quantity);
+  }
+
 }

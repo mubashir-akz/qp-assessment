@@ -7,11 +7,11 @@ import { User } from 'src/user/entities/user.entity';
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'postgres',
-  host: 'localhost',
-  port: 5431,
-  username: 'postgres',
-  password: '1234',
-  database: 'qp-assessment',
-  entities: [User,Order,Grocery,Address,OrderItem],
-  synchronize: true,
+  host: process.env.DB_HOST, // Read from .env
+  port: parseInt(process.env.DB_PORT, 10), // Convert string to number
+  username: process.env.DB_USERNAME, // Read from .env
+  password: process.env.DB_PASSWORD, // Read from .env
+  database: process.env.DB_NAME, // Read from .env
+  entities: [User, Order, Grocery, Address, OrderItem],
+  synchronize: true, // Set to false in production
 };

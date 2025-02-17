@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/ormconfig';
 import { OrderModule } from './order/order.module';
@@ -9,6 +10,7 @@ import { OrderItem } from './order/entities/orderitems.entity';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }), // Load .env file
     TypeOrmModule.forRoot(typeOrmConfig),
     OrderModule,
     GroceryModule,

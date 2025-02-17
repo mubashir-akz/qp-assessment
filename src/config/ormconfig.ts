@@ -5,6 +5,9 @@ import { Order } from 'src/order/entities/order.entity';
 import { OrderItem } from 'src/order/entities/orderitems.entity';
 import { User } from 'src/user/entities/user.entity';
 
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'postgres',
   host: process.env.DB_HOST, // Read from .env

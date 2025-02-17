@@ -80,8 +80,10 @@ export class OrderService {
   /**
    * Fetch all orders with related details.
    */
-  async findAll(): Promise<Order[]> {
+  async findAll(id = null): Promise<Order[]> {
+    console.log('id', id);
     return this.orderRepo.find({
+      where: id ? { id } : {},
       relations: ['user', 'address', 'items', 'items.grocery']
     });
   }

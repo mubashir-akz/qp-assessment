@@ -16,6 +16,11 @@ export class GroceryController {
     return this.groceryService.findAll();
   }
 
+  @Get('/available')
+  findAllAvailable() {
+    return this.groceryService.findAllAvailable();
+  }
+
   @Put(':id')
   update(@Param('id') id: number, @Body() grocery: Partial<Grocery>) {
     return this.groceryService.update(id, grocery);

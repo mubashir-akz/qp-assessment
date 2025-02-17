@@ -23,4 +23,8 @@ export class GroceryService {
   remove(id: number) {
     return this.groceryRepo.delete(id);
   }
+
+  findAllAvailable() {
+    return this.groceryRepo.createQueryBuilder('grocery').where('grocery.quantity > 0').getMany();
+  }
 }

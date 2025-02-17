@@ -45,8 +45,8 @@ export class OrderService {
     }
 
     // Fetch user and address
-    const user = await this.userRepo.findOne({ where: { id: userId } });
-    const address = await this.addressRepo.findOne({ where: { id: addressId } });
+    const user = await this.userRepo.findOne({ where: { id: userId || 0 } });
+    const address = await this.addressRepo.findOne({ where: { id: addressId || 0 } });
 
     if (!user || !address) {
       throw new NotFoundException('User or Address not found.');
